@@ -1,6 +1,7 @@
-## What follows are 2 functions. The first creates a matrix. The second solves
-## for the inverse of the matrix. This inverted matrix is cached, and quickly
-## retrieved if the same matrix is asked to be inverted consecutively.
+## What follows are 2 functions, largely modelled after the assignment 2 examples.
+## The first creates a matrix. The second solves for the inverse of the matrix.
+## This inverted matrix is cached, and quickly retrieved if the same matrix
+## is asked to be inverted consecutively.
 
 ## This first function creates the matrix, but performs additional tasks when 
 ## called by the cacheSolve function. 
@@ -15,7 +16,7 @@ makeCacheMatrix <- function(x = matrix()) {
   set <- function(y) { 
     ## Saves inputted matrix.                  
     x <<- y             
-    ##Resets our inverted matrix to NULL.
+    ##Resets our cached inverted matrix to NULL.
     i <<- NULL 
   }
   
@@ -46,9 +47,10 @@ cacheSolve <- function(x, ...) {
   i <- x$getinverse()
   
   ## This checks if there is a cached inverted matrix. If there is a cached
-  ## inverted matrix, a message is printed, and the inverted matrix is supplied.
+  ## inverted matrix, a message is printed, the inverted matrix is supplied, and
+  ## the function is exited.
   if(!is.null(i)) {
-    message("getting cached data")
+    message("Obtaining cached data.")
     return(i)
   }
   
