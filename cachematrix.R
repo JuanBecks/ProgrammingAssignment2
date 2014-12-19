@@ -1,13 +1,14 @@
-## What follows are 2 functions, largely modelled after the assignment 2 examples.
-## The first creates a matrix. The second solves for the inverse of the matrix.
-## This inverted matrix is cached, and quickly retrieved if the same matrix
-## is asked to be inverted consecutively.
+## What follows are 2 functions, modelled after the assignment 2 examples
+## provided by Roger D. Peng, PhD, Jeff Leek, PhD, Brian Caffo, PhD in their
+## R Programming Coursera course. The first creates a matrix. The second solves
+## for the inverse of the matrix. This inverted matrix is cached, and quickly
+## retrieved if the same matrix is asked to be inverted consecutively.
 
-## This first function creates the matrix, but performs additional tasks when 
-## called by the cacheSolve function. 
+## This first function creates a matrix, but its internal functions perform  
+## additional tasks when called upon by the cacheSolve function. 
 makeCacheMatrix <- function(x = matrix()) {  
   
-  ## i will store our inverted matrix. It resets to NULL everytime a new matrix 
+  ## i stores our inverted matrix. It resets to NULL everytime a new matrix 
   ## is created.  
   i <- NULL 
             
@@ -16,15 +17,15 @@ makeCacheMatrix <- function(x = matrix()) {
   set <- function(y) { 
     ## Saves inputted matrix.                  
     x <<- y             
-    ##Resets our cached inverted matrix to NULL.
+    ## Resets our cached inverted matrix to NULL.
     i <<- NULL 
   }
   
   ## Returns our inputted matrix.
   get <- function() x 
   
-  ## This stores the inverted matrix. It is called by cacheSolve when the inputted
-  ## matrix is new.
+  ## This function stores the inverted matrix. It is called by cacheSolve when the
+  ## inputted matrix is new.
   setinverse <- function(solve) i <<- solve 
   
   ## This function is called by cacheSolve when consecutive inverted requests for 
@@ -37,7 +38,7 @@ makeCacheMatrix <- function(x = matrix()) {
        getinverse = getinverse)
 }
 
-## This function returns the inverted matrix either by solving for it, or by
+## This function returns the inverted matrix, either by solving for it or by
 ## accessing the cached inverted matrix if the same matrix is asked to be 
 ## inverted consecutively.
 cacheSolve <- function(x, ...) {
@@ -48,9 +49,9 @@ cacheSolve <- function(x, ...) {
   
   ## This checks if there is a cached inverted matrix. If there is a cached
   ## inverted matrix, a message is printed, the inverted matrix is supplied, and
-  ## the function is exited.
+  ## the cacheSolve function is exited.
   if(!is.null(i)) {
-    message("Obtaining cached data.")
+    message("Obtaining the cached inverted matrix.")
     return(i)
   }
   
